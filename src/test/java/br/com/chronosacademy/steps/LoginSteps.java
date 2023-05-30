@@ -1,7 +1,9 @@
 package br.com.chronosacademy.steps;
 
 import br.com.chronosacademy.core.Driver;
+import br.com.chronosacademy.enums.Browser;
 import br.com.chronosacademy.pages.LoginPage;
+import br.com.chronosacademy.pages.NewAccountPage;
 import io.cucumber.java.After;
 import io.cucumber.java.Before;
 import io.cucumber.java.pt.*;
@@ -17,7 +19,7 @@ public class LoginSteps {
 
     public void iniciaNavegador(){
 
-        new Driver("chrome");
+        new Driver(Browser.CHROME);
     }
 
     @After
@@ -32,28 +34,29 @@ public class LoginSteps {
         Driver.getDriver().get("https://advantageonlineshopping.com/");
         loginPage = new LoginPage();
         loginPage.clickBtnLogin();
+        loginPage.visibilityOfBtnFechar();
+        loginPage.aguardaLoader();
 
     }
     @Quando("for realizado um clique fora da modal")
     public void forRealizadoUmCliqueForaDaModal() {
         loginPage.clickDivFechaModal();
-
     }
     @Entao("a janela modal deve ser fechada")
     public void aJanelaModalDeveSerFechada() throws Exception {
-        try{
-            loginPage.invisibilityofBtnFechar();
-
+        try {
+            loginPage.invisibilityOfBtnFechar();
         }catch (Exception e){
-            throw  new Exception("A janela modal não foi fechada");
+            throw new Exception("A janela modal não foi fechada");
         }
+
     }
 
 
     @Quando("for realizado um clique no icone de fechar da modal")
     public void forRealizadoUmCliqueNoIconeDeFecharDaModal() {
-        loginPage.clickDivFechaModal();
-        
+        loginPage.clickBtnFechar();
+
     }
 
     @Quando("for realizado um clique no link Create New Account")
@@ -64,6 +67,8 @@ public class LoginSteps {
 
     @Entao("a pagina Create Account deve ser exibida")
     public void aPaginaCreateAccountDeveSerExibida() {
+        NewAccountPage newAccountPage = new NewAccountPage();
+        Assert.assertEquals("CREATE ACCOUNT",newAccountPage.getTextNewAccount());
 
         
     }
@@ -74,7 +79,7 @@ public class LoginSteps {
         String password = map.get("password");
         boolean remember = Boolean.parseBoolean(map.get("remember"));
 
-        loginPage.setInpPassword(username);
+        loginPage.setInpUserName(username);
         loginPage.setInpPassword(password);
         if(remember) loginPage.clickInpRemember();
 
