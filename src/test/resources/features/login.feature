@@ -1,4 +1,7 @@
 #language:pt
+
+@login
+
 Funcionalidade: Login
 
   Contexto:
@@ -19,6 +22,7 @@ Funcionalidade: Login
     Quando for realizado um clique no link Create New Account
     Entao a pagina Create Account deve ser exibida
 
+  @LoginComSucesso
   Esquema do Cenario: Realizar login com <identificacao>
     Quando os campos de login sejam preenchidos da seguinte forma
       | login    | <Login>    |
@@ -28,9 +32,9 @@ Funcionalidade: Login
     Entao deve ser possivel logar no sistema
     Exemplos:
       | identificacao       | Login   | password | remeber |
-      | campos obrigatorios | chronos | senha    | false   |
-      | todos os campos     | chronos | senha    | true    |
-
+      | campos obrigatorios | chronos | Senha123    | false   |
+      | todos os campos     | chronos | Senha123    | true    |
+  @LoginInvalido
   Esquema do Cenario: Realizar login com <identificacao>
     Quando os campos de login sejam preenchidos da seguinte forma
       | login    | <login>    |
@@ -40,8 +44,8 @@ Funcionalidade: Login
     Entao o sistema devera exibir uma mensagem de erro
     Exemplos:
       | identificacao    | login    | password | remember |
-      | usuario invalido | invalido | senha    | false    |
-      | usuario invalido | chronos  | invalida | false    |
+      | usuario invalido | invalido | Senha123    | false    |
+      | usuario senha | chronos  | invalida | false    |
   @dadosEmBranco
   Esquema do Cenario: Realizar login com <identificacao>
     Quando os campos de login sejam preenchidos da seguinte forma
@@ -51,7 +55,7 @@ Funcionalidade: Login
     Entao o botao sign in deve permanecer desabilitado
     Exemplos:
       | identificacao     | login   | password | remember |
-      | usuario em branco |         | senha    | false    |
+      | usuario em branco |         | Senha123    | false    |
       | senha em branco   | chronos |          | false    |
 
 

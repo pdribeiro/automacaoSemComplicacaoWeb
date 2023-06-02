@@ -72,4 +72,16 @@ public class LoginPage {
     public void aguardaLoader(){
         Driver.attributChange(loginMap.divLoader, "display" , "none");
     }
+
+    public String getUsuarioLogado(){
+        Driver.visibilityOf(loginMap.textLogado);
+        return loginMap.textLogado.getText();
+
+    }
+
+    public String getErroLogin(){
+        Driver.visibilityOf(loginMap.textErrologin);
+        return loginMap.textErrologin.getText();
+
+    }
 }
