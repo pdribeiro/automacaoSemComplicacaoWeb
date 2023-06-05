@@ -4,6 +4,7 @@ import br.com.chronosacademy.core.Driver;
 import br.com.chronosacademy.enums.Browser;
 import br.com.chronosacademy.pages.CursoPage;
 import br.com.chronosacademy.pages.PrincipalPage;
+import io.sicredi.tm4j.common.annotations.TestCase;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;

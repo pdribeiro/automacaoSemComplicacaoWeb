@@ -70,6 +70,7 @@ public class LoginPage {
     }
 
     public void aguardaLoader(){
+
         Driver.attributChange(loginMap.divLoader, "display" , "none");
     }
 
